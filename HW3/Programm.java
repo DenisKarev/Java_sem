@@ -33,17 +33,17 @@ package HW3;
 public class Programm {
     public static void main(String[] args) {
         // a: 2 b: 7 c: 2 d: 1 -> 3
-        // int a = 2;
+        // int a = 1;
         // int b = 7;
         // int mul = 2;
         // int add = 1;
 
         // a: 3 b: 27 c: 3 d: 2 -> 6        // excel file
         // a: 3 b: 27 c: 2 d: 3 -> 10       // excel file
-        int a = 3;
-        int b = 27;
-        int mul = 3;
-        int add = 2;
+        // int a = 3;
+        // int b = 27;
+        // int mul = 3;
+        // int add = 2;
 
         // // a: 1 b: 25 c: 2 d: 3 -> 9     // excel file
         // // a: 2 b: 25 c: 2 d: 3 -> 6     // excel file
@@ -75,24 +75,20 @@ public class Programm {
         // a: 22 b: 2022 c: 11 d: 10 -> 18
         // a: 22 b: 2022 c: 3 d: 1 -> 763827
         // 763827 my result
-        // a: 22 b: 20220 c: 3 d: 1 -> 535173226980
-        // ! my result
-        // a: 1 b: 1111 c: 2 d: 1 -> 3990330794
-        // 3990330794 my result
-        // a: 1 b: 11111 c: 2 d: 1 -> 606408167570737286
-        // ! my result
+        // a: 22 b: 20220 c: 3 d: 1 -> 535173226980         // 535173226980 my result
+        // a: 1 b: 1111 c: 2 d: 1 -> 3990330794             // 3990330794 my result
+        // a: 1 b: 11111 c: 2 d: 1 -> 606408167570737286    // 606408167570737286 my result
         // 2147483647 int
         // 9223372036854775807 long
 
-        // int a = 55;
-        // int b = 555;
-        // int mul = 5;
-        // int add = 2;
+        int a = 3;
+        int b = 27;
+        int mul = 3;
+        int add = 2;
 
-        long[] count = new long[b];
-        count[0] = 0;
-        // System.out.println(HW3.calcRec(a, b, mul, add, count));
-        System.out.println(HW3.calcRec(a, b, mul, add, count));
-        System.out.println(count[0]);
+        System.out.println(HW3.calcRec(a, b, mul, add));
+        System.out.println(HW3.calcTableInt(a, b, mul, add));
+        System.out.println(HW3.calcInts(a, b, mul, add));
+        HW3.printOnePath(a, b, mul, add);
     }
 }
