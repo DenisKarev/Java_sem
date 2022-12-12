@@ -44,7 +44,6 @@ public class HW5 {
             }
             System.out.println(triAngularNumber(num));
         }
-        // System.out.printf("]\n");
     }
 
     public static void printNAngularNumbers(int base, int num) {
@@ -66,7 +65,6 @@ public class HW5 {
                 System.out.println(nAngularNumber(base, num));
             }
         }
-        // System.out.printf("]\n");
     }
 
 }
