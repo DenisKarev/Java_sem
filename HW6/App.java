@@ -13,7 +13,7 @@ public class App {
     // System.out.println(infrastructure.getAllInfo(5));
 
     // System.out.println(infrastructure.searchFilmName("особ"));
-    infrastructure.printCinemasList(infrastructure.searchFilmName("особ"));
+    infrastructure.printCinemasList(infrastructure.searchFilmName("а"));
   }
 }
 
