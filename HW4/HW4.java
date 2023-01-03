@@ -14,38 +14,6 @@ public class HW4 {
         while (mapQueue.size() != 0) {
             Point2d ps = mapQueue.poll();
 
-            switch (map[ps.x][ps.y + 1]) {
-                case 0:
-                    map[ps.x][ps.y + 1] = map[ps.x][ps.y] + 1;
-                    mapQueue.add(new Point2d(ps.x, ps.y + 1));
-                    break;
-                case -5:
-                    Point2d pt = new Point2d(ps.x, ps.y + 1);
-                    if (!checkFinishes(finishes, pt)) {
-                        finishes.add(pt);
-                        map[ps.x][ps.y + 1] = map[ps.x][ps.y] + 1;
-                    }
-                    break;
-                default:
-                    break;
-            }
-
-            switch (map[ps.x][ps.y - 1]) {
-                case 0:
-                    map[ps.x][ps.y - 1] = map[ps.x][ps.y] + 1;
-                    mapQueue.add(new Point2d(ps.x, ps.y - 1));
-                    break;
-                case -5:
-                    Point2d pt = new Point2d(ps.x, ps.y - 1);
-                    if (!checkFinishes(finishes, pt)) {
-                        map[ps.x][ps.y - 1] = map[ps.x][ps.y] + 1;
-                        finishes.add(pt);
-                    }
-                    break;
-                default:
-                    break;
-            }
-
             switch (map[ps.x + 1][ps.y]) {
                 case 0:
                     map[ps.x + 1][ps.y] = map[ps.x][ps.y] + 1;
@@ -58,10 +26,7 @@ public class HW4 {
                         map[ps.x + 1][ps.y] = map[ps.x][ps.y] + 1;
                     }
                     break;
-                default:
-                    break;
             }
-
             switch (map[ps.x - 1][ps.y]) {
                 case 0:
                     map[ps.x - 1][ps.y] = map[ps.x][ps.y] + 1;
@@ -74,7 +39,31 @@ public class HW4 {
                         map[ps.x - 1][ps.y] = map[ps.x][ps.y] + 1;
                     }
                     break;
-                default:
+            }
+            switch (map[ps.x][ps.y + 1]) {
+                case 0:
+                    map[ps.x][ps.y + 1] = map[ps.x][ps.y] + 1;
+                    mapQueue.add(new Point2d(ps.x, ps.y + 1));
+                    break;
+                case -5:
+                    Point2d pt = new Point2d(ps.x, ps.y + 1);
+                    if (!checkFinishes(finishes, pt)) {
+                        finishes.add(pt);
+                        map[ps.x][ps.y + 1] = map[ps.x][ps.y] + 1;
+                    }
+                    break;
+            }
+            switch (map[ps.x][ps.y - 1]) {
+                case 0:
+                    map[ps.x][ps.y - 1] = map[ps.x][ps.y] + 1;
+                    mapQueue.add(new Point2d(ps.x, ps.y - 1));
+                    break;
+                case -5:
+                    Point2d pt = new Point2d(ps.x, ps.y - 1);
+                    if (!checkFinishes(finishes, pt)) {
+                        map[ps.x][ps.y - 1] = map[ps.x][ps.y] + 1;
+                        finishes.add(pt);
+                    }
                     break;
             }
 
@@ -100,31 +89,34 @@ public class HW4 {
     }
 
     private static int[][] drawAPath(int[][] map, Point2d fin) {
-        Queue<Point2d> path = new LinkedList<Point2d>();
+        // Queue<Point2d> path = new LinkedList<Point2d>();
+        Point2d pointW = new Point2d(fin.x, fin.y);
         int[][] tmap = copyMap(map);
-        
-        Point2d pw = new Point2d(0, 0);
-        path.add(fin);
-        while (path.size() != 0) {
-            pw = path.poll();
-            // System.out.printf("%d - %d %d %d %d\n", tmap[pw.x][pw.y], tmap[pw.x][pw.y + 1], tmap[pw.x][pw.y - 1], tmap[pw.x + 1][pw.y], tmap[pw.x - 1][pw.y]);
-            if (tmap[pw.x + 1][pw.y] == tmap[pw.x][pw.y] - 1) {
-                map[pw.x + 1][pw.y] = -10;
-                path.add(new Point2d(pw.x + 1, pw.y));
-            }
-            if (tmap[pw.x - 1][pw.y] == tmap[pw.x][pw.y] - 1) {
-                map[pw.x - 1][pw.y] = -10;
-                path.add(new Point2d(pw.x - 1, pw.y));
-            }
-            if (tmap[pw.x][pw.y + 1] == tmap[pw.x][pw.y] - 1) {
-                map[pw.x][pw.y + 1] = -10;
-                path.add(new Point2d(pw.x, pw.y + 1));
-            }
-            if (tmap[pw.x][pw.y - 1] == tmap[pw.x][pw.y] - 1) {
-                map[pw.x][pw.y - 1] = -10;
-                path.add(new Point2d(pw.x, pw.y - 1));
+        map[fin.x][fin.y] = -5;
+        map[pointW.x][pointW.y] = 1;
+
+        // path.add(fin);
+        while (tmap[pointW.x][pointW.y] != 1) {
+            // pointW = path.poll();
+
+            if (tmap[pointW.x + 1][pointW.y] == tmap[pointW.x][pointW.y] - 1) {
+                map[pointW.x + 1][pointW.y] = -10;
+                pointW.x += 1;
+            } else if (tmap[pointW.x - 1][pointW.y] == tmap[pointW.x][pointW.y] - 1) {
+                map[pointW.x - 1][pointW.y] = -10;
+                pointW.x -= 1;
+                ;
+            } else if (tmap[pointW.x][pointW.y + 1] == tmap[pointW.x][pointW.y] - 1) {
+                map[pointW.x][pointW.y + 1] = -10;
+                pointW.y += 1;
+                ;
+            } else if (tmap[pointW.x][pointW.y - 1] == tmap[pointW.x][pointW.y] - 1) {
+                map[pointW.x][pointW.y - 1] = -10;
+                pointW.y -= 1;
+                ;
             }
         }
+
         return map;
     }
 
